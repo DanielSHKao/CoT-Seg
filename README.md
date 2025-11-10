@@ -20,7 +20,7 @@ Our code will be released soon.
 View more examples in our [project page](https://danielshkao.github.io/cot-seg.html).
 
 ## Dataset
-Please refer to [ReasonSeg-Hard](https://github.com/DanielSHKao/CoT-Seg/blob/main/dataset/readme.md) for dataset details.
+Please refer to the [dataset](https://github.com/DanielSHKao/CoT-Seg/blob/main/dataset) directory for more details.
 
 ## Citation
 If you find this repository helpful, please consider citing:
