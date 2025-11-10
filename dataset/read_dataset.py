@@ -24,7 +24,7 @@ class CustomDataset:
 
 
 if __name__ == "__main__":
-    ds = CustomDataset("../../cot-seg_code/datasets/new_dataset/final/")
+    ds = CustomDataset("../../cot-seg_code/datasets/ReasonSeg-Hard/")
     for i in range(len(ds)):
         print(ds[i])
 
