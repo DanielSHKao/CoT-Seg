@@ -28,7 +28,7 @@ If you find this repository helpful, please consider citing:
 @article{kao2025cotseg,
     title={CoT-Seg: Rethinking Segmentation with Chain-of-Thought Reasoning and Self-Correction},
     author={Kao, Shiu-hong and Huang, Chak-Ho and Liu, Huaiqian and Tai, Yu-Wing and Tang, Chi-Keung},
-    journal={arXiv preprint arXiv:xxxx.xxxxx},
+    url = {https://danielshkao.github.io/cot-seg.html},
     year={2025}
 }
 ```
