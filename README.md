@@ -20,9 +20,7 @@ Our code will be released soon.
 View more examples in our [project page](https://danielshkao.github.io/cot-seg.html).
 
 ## Dataset
-We propose REASONSEG-HARD, a new evaluation dataset for stress testing reasoning segmentation. To access the dataset, please download it from the following sources:
-- [Google Cloud]()
-- [OneDrive]()
+Please refer to [ReasonSeg-Hard](https://github.com/DanielSHKao/CoT-Seg/blob/main/dataset/readme.md) for dataset details.
 
 ## Citation
 If you find this repository helpful, please consider citing:
