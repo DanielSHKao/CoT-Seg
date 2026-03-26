@@ -1,5 +1,5 @@
 # CoT-Seg 
-> [**CoT-Seg: Rethinking Segmentation with Chain-of-Thought Reasoning and Self-Correction**](https://danielshkao.github.io/CoT-Seg/preprint.pdf)     
+> [**CoT-Seg: Rethinking Segmentation with Chain-of-Thought Reasoning and Self-Correction**](https://arxiv.org/pdf/2601.17420)     
 > Shiu-hong Kao, Chak Ho Huang, Huaiqian Liu, Yu-Wing Tai, Chi-Keung Tang       
 > [Project page](https://danielshkao.github.io/cot-seg.html)
 
