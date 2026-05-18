@@ -30,7 +30,7 @@ pip install flash_attn==2.7.4.post1 --no-build-isolation
 2. Download the Reasoning Segmentation Model, we mainly used [VisionReasoner](https://github.com/JIA-Lab-research/VisionReasoner).
 
 ## Inference
-To run inference, please first set the configuration for openai in ```inference.py```,
+To run inference, please first set the configuration for OpenAI API in ```inference.py```,
 then you can run:
 
 ```commandline
