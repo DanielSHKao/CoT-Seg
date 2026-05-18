@@ -26,7 +26,7 @@ pip install flash_attn==2.7.4.post1 --no-build-isolation
 
 ## Model Downloads
 1. Download the SAM Checkpoint, we used SamHQ2 ([sam2.1_hq_hiera_large](https://huggingface.co/lkeab/hq-sam/resolve/main/sam2.1_hq_hiera_large.pt?download=true)).
-2. Download the Reasoning Segmentation Model, we mainly used [Vision Reasoner](https://github.com/JIA-Lab-research/VisionReasoner).
+2. Download the Reasoning Segmentation Model, we mainly used [VisionReasoner](https://github.com/JIA-Lab-research/VisionReasoner).
 
 ## Inference
 To run inference, please first set the configuration for openai in ```inference.py```,
