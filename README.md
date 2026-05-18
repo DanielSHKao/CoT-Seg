@@ -51,7 +51,7 @@ python inference.py
 View more examples in our [project page](https://danielshkao.github.io/cot-seg.html).
 
 ## Dataset
-Please refer to the [dataset](https://github.com/DanielSHKao/CoT-Seg/blob/main/dataset) directory for more details.
+We evaluated CoT-Seg on [ReasonSeg](https://github.com/JIA-Lab-research/LISA#Dataset), [ReasonSeg-Hard](https://github.com/DanielSHKao/CoT-Seg/blob/main/dataset), and [RefCOCO](https://github.com/lichengunc/refer). Please proceed to the official websites to download the data.
 
 ## Citation
 If you find this repository helpful, please consider citing:
