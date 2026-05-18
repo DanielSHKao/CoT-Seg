@@ -12,7 +12,37 @@ semantics from images, and identify target objects even under implicit or comple
 prompts. Crucially, CoT-Seg incorporates a self-correction stage: the model evaluates its own segmentation against the original query and reasoning trace, identifies mismatches, and iteratively refines the mask.
 
 ---
-Our code will be released soon.
+## Installation
+Our code is tested on Ubuntu 22.04 with python 3.12
+
+Installing requirements
+```commandline
+pip install -r requirements.txt
+```
+Flash attention
+```commandline
+pip install flash_attn==2.7.4.post1 --no-build-isolation
+```
+
+## Model Downloads
+1. Download the SAM Checkpoint, we used SamHQ2 ([sam2.1_hq_hiera_large](https://huggingface.co/lkeab/hq-sam/resolve/main/sam2.1_hq_hiera_large.pt?download=true)).
+2. Download the Reasoning Segmentation Model, we mainly used [Vision Reasoner](https://github.com/JIA-Lab-research/VisionReasoner).
+
+## Inference
+To run inference, please first set the configuration for openai in ```inference.py```,
+then you can run:
+
+```commandline
+python inference.py 
+--reasoner_model_path [path] \
+--segmentation_model_path [path] \
+--prompt [prompt] \
+--image_path [path] \
+--output_path [path] \
+--reseg_rounds 2 \
+--mask_threshold 0.5 \
+--use_rag False
+``` 
 
 ## Demo
 <img width="700" alt="image" src="https://github.com/user-attachments/assets/77e00d7e-8c3a-4e69-a412-9b8a73868bc5" />
