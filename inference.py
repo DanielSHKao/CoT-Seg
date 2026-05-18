@@ -1,7 +1,7 @@
 import argparse
 import os
 import sys
-import tqdm
+
 import cv2
 import numpy as np
 import torch
@@ -12,7 +12,7 @@ from utils.utils import (DEFAULT_IM_END_TOKEN, DEFAULT_IM_START_TOKEN,
                          AverageMeter, ProgressMeter, Summary, dict_to_cuda,
                          intersectionAndUnionGPU)
 
-os.environ["CUDA_VISIBLE_DEVICES"] = '1'
+
 
 from transformers import Qwen2VLForConditionalGeneration, Qwen2_5_VLForConditionalGeneration, AutoProcessor
 from qwen_vl_utils import process_vision_info
@@ -24,8 +24,8 @@ import re
 from sam2.sam2_image_predictor import SAM2ImagePredictor
 from sam2.build_sam import build_sam2
 import matplotlib.pyplot as plt
-from grounding_sam import prepare_object_detector, detect, get_boxes
-import dotenv
+
+
 
 from utils.refer import REFER
 from openai import AzureOpenAI
@@ -34,7 +34,7 @@ from playwright.sync_api import sync_playwright
 from markdownify import markdownify as md
 import requests
 from ddgs import DDGS
-import matplotlib
+
 from pathlib import Path
 
 import base64
@@ -317,51 +317,7 @@ def inference_segzero(predictor, processor, reasoning_model, image_path, prompt)
     return mask_all.copy()
 
 
-def inference_samhq(predictor, image_path, labels):
-    image = PILImage.open(image_path)
-    image = image.convert("RGB")
-    dino = prepare_object_detector()
-    detection_results = detect(dino, image, labels.split("."), 0.5)
-    dino_boxes = get_boxes(detection_results)[0]
 
-    with torch.inference_mode(), torch.autocast("cuda", dtype=torch.bfloat16):
-        mask_all = np.zeros((image.height, image.width), dtype=bool)
-        predictor.set_image(image)
-        for bbox in dino_boxes:
-            masks, scores, _ = predictor.predict(
-                box=bbox
-            )
-            sorted_ind = np.argsort(scores)[::-1]
-            masks = masks[sorted_ind]
-            mask = masks[0].astype(bool)
-            mask_all = np.logical_or(mask_all, mask)
-
-    return (mask_all.copy(), dino_boxes)
-
-
-def inference_samhq_logits(predictor, image_path, labels, need_split=True):
-    image = PILImage.open(image_path)
-    image = image.convert("RGB")
-    dino = prepare_object_detector()
-    if need_split:
-        detection_results = detect(dino, image, labels.split("."), 0.5)
-    else:
-        detection_results = detect(dino, image, labels, 0.5)
-    dino_boxes = get_boxes(detection_results)[0]
-
-    with torch.inference_mode(), torch.autocast("cuda", dtype=torch.bfloat16):
-        mask_all = np.zeros((image.height, image.width), dtype=np.float16)
-        predictor.set_image(image)
-        for bbox in dino_boxes:
-            masks, scores, _ = predictor.predict(
-                box=bbox,
-                return_logits=True
-            )
-            sorted_ind = np.argsort(scores)[::-1]
-            masks = masks[sorted_ind]
-            mask = masks[0]
-            mask_all = mask_all + relu(mask)
-    return mask_all
 
 
 def parse_args(args):
@@ -569,34 +525,13 @@ def parse_bb_points(output_text):
     return pred_bboxes, pred_points, summary
 
 
-def preprocess(
-        x,
-        pixel_mean=torch.Tensor([123.675, 116.28, 103.53]).view(-1, 1, 1),
-        pixel_std=torch.Tensor([58.395, 57.12, 57.375]).view(-1, 1, 1),
-        img_size=1024,
-) -> torch.Tensor:
-    """Normalize pixel values and pad to a square input."""
-    # Normalize colors
-    x = (x - pixel_mean) / pixel_std
-    # Pad
-    h, w = x.shape[-2:]
-    padh = img_size - h
-    padw = img_size - w
-    x = F.pad(x, (0, padw, 0, padh))
-    return x
 
-
-def normalize(score):
-    norm_score = score / max(np.abs(score.max()), np.abs(score.min()))
-    return norm_score
 
 
 def relu(x, thres=0.):
     return x * (x > thres)
 
 
-def measure_scale(score):
-    return max(np.abs(score.max()), np.abs(score.min()))
 
 
 def visualize(score, save_path=None):
@@ -795,8 +730,7 @@ class moe_inference_pipeline:
             context = ""
         else:
             context = rag_summary(self.client, scraped, [image_url], prompt)
-            
-        print("RAG Summary:", context)
+            print("RAG Summary:", context)
         try:
             cot_text = prompt_openai(self.client, [image_url], prompt, method='cot-seg-text', context=context)
         except Exception as e:
