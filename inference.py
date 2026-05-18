@@ -17,6 +17,7 @@ from utils.utils import (DEFAULT_IM_END_TOKEN, DEFAULT_IM_START_TOKEN,
 from transformers import Qwen2VLForConditionalGeneration, Qwen2_5_VLForConditionalGeneration, AutoProcessor
 from qwen_vl_utils import process_vision_info
 import json
+import yaml
 import pdb
 import cv2
 from PIL import Image as PILImage
@@ -641,11 +642,13 @@ class moe_inference_pipeline:
         self.save_dir = save_dir
         self.reseg_rounds = reseg_rounds
         self.mask_threshold = mask_threshold
-
+        
+        with open('config/openai.yaml', 'r') as file:
+            openai_docs = yaml.safe_load(file)
         self.client = AzureOpenAI(
-            api_key="",
-            api_version="",
-            azure_endpoint=""
+                api_key=openai_docs["api_key"],
+                api_version=openai_docs["api_version"],
+                azure_endpoint=openai_docs["azure_endpoint"]
         )
 
         self.reasoning_model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
