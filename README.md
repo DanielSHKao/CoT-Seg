@@ -56,10 +56,10 @@ We evaluated CoT-Seg on [ReasonSeg](https://github.com/JIA-Lab-research/LISA#Dat
 ## Citation
 If you find this repository helpful, please consider citing:
 ```
-@article{kao2025cotseg,
-    title={CoT-Seg: Rethinking Segmentation with Chain-of-Thought Reasoning and Self-Correction},
-    author={Kao, Shiu-hong and Huang, Chak-Ho and Liu, Huaiqian and Tai, Yu-Wing and Tang, Chi-Keung},
-    url = {https://danielshkao.github.io/cot-seg.html},
-    year={2025}
+@article{kao2026cot,
+  title={CoT-Seg: Rethinking Segmentation with Chain-of-Thought Reasoning and Self-Correction},
+  author={Kao, Shiu-hong and Huang, Chak Ho and Liu, Huaiqian and Tai, Yu-Wing and Tang, Chi-Keung},
+  journal={arXiv preprint arXiv:2601.17420},
+  year={2026}
 }
 ```
