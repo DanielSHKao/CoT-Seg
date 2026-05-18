@@ -419,22 +419,14 @@ def rag_summary(client, file_path, image_urls, query):
 
 
 def prompt_openai(client, image_urls, user_query, method='cot-seg', summary="", context=""):
-    # llm_prompt = FIRST_TASK_SPEC_PROMPT if method == 'cot-seg' else REF_TASK_SPEC_PROMPT
-    # llm_prompt = llm_prompt.replace("<USR_Q>", user_query)
-    # llm_prompt = FIRST_GENERAL_PROMPT + llm_prompt if method == 'cot-seg' else REF_GENERAL_PROMPT + llm_prompt
-    print(user_query)
-
     if method == "cot-seg-bbox-points" or method == "cot-seg-text":
         llm_prompt = FIRST_TASK_SPEC_PROMPT.replace("<USR_Q>", user_query)
 
-    if method == "cot-seg-bbox-points":
-        llm_prompt = BB_GENERAL_PROMPT + llm_prompt
-    elif method == "cot-seg-text":
+    if method == "cot-seg-text":
         llm_prompt = FIRST_GENERAL_PROMPT + llm_prompt
     elif method == "cot-compare":
         llm_prompt = "You will serve as an agent for language-based image segmentation model. You need to decide which segmentation results is the best. You are given three images, the original image, labeled segzero result and labeled hq result, and you are also given the user query '" + user_query + "' and the summary of the scene and task '" + summary + "'. A segmentation is better if it segments all the object(s) wanted by the user query and it does not include extra objects, please strike a balance between these two aspects, for example, one result segments most of the object while the other one segments almost everything in the image, in this case the first segmentation is better. Please also note that we need segmentation mask and not outline or edge, having an outline of an object does not satisfy the segmentation requirements. Please output an integer indicating which result is better, 0 - segzero is better, 1 - hq result is better in the strict format of <answer>integer</answer> and provide a series of chain of thought question and answer that led to that result."
     elif method == "cot-compare-old":
-        # llm_prompt = "You will serve as an agent for language-based image segmentation model. You need to decide which segmentation results is the best. You are given four images, the original image, labeled segzero result, labeled hq result and labeled previous result, and you are also given the user query '" + user_query + "' and the summary of the scene and task '" + summary + "' Please output an integer indicating which result is better, 0 - segzero is better, 1 - hq result is better, 2 - previous result is better in the strict format of <answer>integer</answer> and provide a series of chain of thought question and answer that led to that result."
         llm_prompt = "You will serve as an agent for language-based image segmentation model. You need to decide which segmentation results is the best. You are given three images, the original image, labeled segzero result, and labeled previous result, and you are also given the user query '" + user_query + "' and the summary of the scene and task '" + summary + "'. A segmentation is better if it segments all the object(s) wanted by the user query and it does not include extra objects, please strike a balance between these two aspects, for example, one result segments most of the object while the other one segments almost everything in the image, in this case the first segmentation is better. Please also note that we need segmentation mask and not outline or edge, having an outline of an object does not satisfy the segmentation requirements. Please output an integer indicating which result is better, 0 - current segzero is better, 1 - previous result is better in the strict format of <answer>integer</answer> and provide a series of chain of thought question and answer that led to that result."
     elif method == "cot-reseg":
         llm_prompt = REF_GENERAL_PROMPT + REF_TASK_SPEC_PROMPT.replace("<USR_Q>", user_query)
