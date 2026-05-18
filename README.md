@@ -1,6 +1,7 @@
-# CoT-Seg 
+# CoT-Seg: Rethinking Segmentation with Chain-of-Thought Reasoning and Self-Correction
 > [**CoT-Seg: Rethinking Segmentation with Chain-of-Thought Reasoning and Self-Correction**](https://arxiv.org/pdf/2601.17420)     
-> Shiu-hong Kao, Chak Ho Huang, Huaiqian Liu, Yu-Wing Tai, Chi-Keung Tang       
+> Shiu-hong Kao, Chak Ho Huang, Huaiqian Liu, Yu-Wing Tai, Chi-Keung Tang  
+> ICLR 2026 Workshop on AI with Recursive Self-Improvement (RSI)  
 > [Project page](https://danielshkao.github.io/cot-seg.html)
 
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/04dcfe23-e97d-40b6-a0ea-cdbbca8f9cb7" />
